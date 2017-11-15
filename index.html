@@ -7,11 +7,12 @@
   <link rel="stylesheet" href="css\bootstrap.min.css">
   <script type="text/javascript" src="javascript\bootstrap.min.js"></script>
   <script>
-    function greetings(){
-      document.getElementById("displayonload").innerHTML=" Greetings Welcome to my site."
+    function greetings() {
+      document.getElementById("displayonload").innerHTML = " Greetings Welcome to my site."
     }
   </script>
 </head>
+
 <body onload="greetings()">
   <div class="jumbotron">
     <div class="container">
@@ -22,14 +23,14 @@
   <h2>Built-In Examples & Dynamic Typing</h2>
   <div class="row">
     <div class="col-md-4">
-        <button type="button" onclick="photo()">Click to see my name</button>
+      <button type="button" onclick="photo()">Click to see my name</button>
       <script>
-      function photo() {
-         //implementing dynamic typing
-          var cup="steel";
-          var water=45;
-          var take=cup + water;
-          document.getElementById("displayonclick").innerHTML = "Caroline Theuri  " + take;// click event
+        function photo() {
+          //implementing dynamic typing
+          var cup = "steel";
+          var water = 45;
+          var take = cup + water;
+          document.getElementById("displayonclick").innerHTML = "Caroline Theuri  " + take; // click event
         }
       </script>
       <p id="displayonclick">Click on the button to see my name.</p>
@@ -37,60 +38,62 @@
 
     </div>
     <div class="col-md-4">
- <h2>Promise:</h2>
- <p id="viewleave">Click to know if you are entitled to a leave or not depending on your evaluation</p>
- <button type="button" name="button" onclick="evaluation()">click to know if you have a leave or not</button>
-  <script>
-  var designFinished =false;
+      <h2>Promise:</h2>
+      <p id="viewleave">Click to know if you are entitled to a leave or not depending on your evaluation</p>
+      <button type="button" name="button" onclick="evaluation()">click to know if you have a leave or not</button>
+      <script>
+        var designFinished = false;
 
-// Promise
-var Getleave = new Promise(
-  function (resolve, reject) {
-      if (designFinished) {
-          var leave={
-              day:Monday,
-              month:Tuesday,
-          };
-          resolve(leave); // fulfilled
-      } else {
-          var excuse = new Error('design not finished');
-          reject(excuse); // reject
+        // Promise
+        var Getleave = new Promise(
+          function(resolve, reject) {
+            if (designFinished) {
+              var leave = {
+                day: Monday,
+                month: Tuesday,
+              };
+              resolve(leave); // fulfilled
+            } else {
+              var excuse = new Error('design not finished');
+              reject(excuse); // reject
+            }
+
+          }
+        );
+        var evaluation = function() {
+          Getleave
+            .then(function(fulfilled) {
+              document.getElementById("viewleave").innerHTML = "You have been entitled to two days leave";
+            })
+            .catch(function(error) {
+              document.getElementById("viewleave").innerHTML = "You are not entitled to a leave";
+            });
+        };
+      </script>
+    </div>
+    <div class="col-md-4">
+     <h2>Custom Events</h2>
+     <p id="custom"></p>
+      <script>
+      document.body.addEventListener("eventName",action, false);
+       function action(e) {
+      document.getElementById("custom").innerHTML="the car was bought in: " +  e.detail.datebought + "and its model is a" + e.detail.carowned;
       }
+        var createEvent= new CustomEvent("eventName", {
+                    'detail': {
+                         carowned: "Benz",
+                          datebought: "january 2017",
+                       
+                    }
+                
 
-  }
-);
-var evaluation = function () {
-    Getleave
-        .then(function (fulfilled) {
-          document.getElementById("viewleave").innerHTML ="You have been entitled to two days leave";
-        })
-        .catch(function (error) {
-          document.getElementById("viewleave").innerHTML = "You are not entitled to a leave";
-        });
-};
+          });
+        document.body.dispatchEvent(createEvent);
 
-  </script>
+
+    </script>
+    </div>
   </div>
-  <div class="col-md-4">
-      <h2>Creating custom events</h2>
-    <form id="formcontent" action="#" method="get">
- <label for="name">Enter your name:</label>
- <input id="content" type="text" name="" value="">
-<button type="submit" name="button">Submit</button>
- </form>
-  </div>
-
-
-  <script>
-  document.getElementById("formcontent").addEventListener("submit", function(e) {
-  e.preventDefault();
-  var content = e.current.getElementById("content").value.trim();
-  if (content) {
-  alert(content);
-  }
-  }, false);
-  </script>
-</div>
 
 </body>
 
