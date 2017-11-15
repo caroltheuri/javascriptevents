@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Education</title>
+    <link rel="stylesheet" href="css\bootstrap.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <script type="text/javascript" src="javascript\bootstrap.min.js"></script>
+  </head>
+  <body>
+      <div class="jumbotron">
+        <div class="container">
+          <h1>Library system</h1>
+        </div>
+      </div>
+      <div class="books">
+        <p id="book"></p>
+        <p id="book2"></p>
+        <button type="button" name="button" onclick="library()"> Click to see the type of books available in the store</button>
+        <button type="button" name="button" onclick="bookdetails()"> Click to see the type of books available in the store with spread</button>
+         <script>
+           const MY_FAV = 7;
+           let librarybooks={
+             title:"goot-to-great",
+             edition:6,
+             author: "Caroline",
+             yearpublished:1965
+           };
+            function library(){
+              let {title,author} = librarybooks;
+                  document.getElementById("book").innerHTML=`The name of the book is ${title} and its author is called ${author}`;
+            }
+            function bookdetails(){
+              let bookname, author,datepublished,bookdetail;
+              bookname=["Boy","Dreamer","Joging"];
+              author=["james","peter","john"];
+              datepublished=[1995,1996,2005];
+              author.push('kellen');
+             bookdetail=[...bookname];
+             bookdetail.forEach(function(item){
+                document.getElementById("book2").innerHTML=bookdetail;
+             });
+            }
+
+            bookdetails();
+
+         </script>
+      </div>
+  </body>
+</html>
